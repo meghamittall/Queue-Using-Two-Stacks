@@ -5,35 +5,62 @@ import java.io.*;
 import java.util.*;
 
 class Queue {
+    Stack<Integer> s1;
+    Stack<Integer> s2;
 
-
+// time complexity = O(1)
+// space complexity = constant 
     public Queue() {
+        s1 = new Stack();
+        s2 = new Stack();
 
     }
 
     // Push element x to the back of queue.
+    // Time complexity O(1)
+    // Space complexity constant
     public void enqueue(int x) {
+        s1.push(x);
 
     }
 
     // Removes the element from in front of queue.
+    // Time complexity O(n)
+    // Space complexity O(n)
     public int dequeue() {
+        if(s2.isEmpty()) {
+            while(!s1.isEmpty())
+                s2.push(s1.pop());
+        }
+        return s2.pop();
 
     }
     
     // Get the front element.
+    // Time complexity O(n)
+    // Space complexity O(n)
     public int peek() {
+        if(s2.isEmpty()) {
+            while(!s1.isEmpty())
+                s2.push(s1.pop());
+        }
+        return s2.peek();
 
     }
     
     // Return whether the queue is empty.
+    // Time complexity O(1)
+    // Space complexity constant
     public boolean empty() {
+        return s1.isEmpty() && s2.isEmpty();
 
     }
 
     // Return the number of elements in queue.
-    public boolean size() {
-
+    // Time complexity O(1)
+    // Space complexity constant
+    public int size() {
+        return s1.size()+ s2.size();
     }
     
     public static void main(String[] args) {
